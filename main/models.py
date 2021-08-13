@@ -9,25 +9,25 @@ class Skill(models.Model):
         ('coding' , 'coding'),
         ('other' ,'other'),
     ]
-    
+
     name = models.CharField(max_length=100 ,null=True ,blank=True)
     progress = models.IntegerField(default =  0 ,
                                     validators=[MaxValueValidator(100), MinValueValidator(1)])
     _type = models.CharField(max_length=100 , blank=True,null=True , choices=types)
-    
+
     def __str__(self):
         return self.name
-    
-    
+
+
 
 class Education (models.Model):
     title = models.CharField(max_length=100, blank=True,null=True)
-    description = models.TextField(max_length=100 , blank=True ,null=True)
+    description = models.TextField(max_length=1000 , blank=True ,null=True)
     year = models.IntegerField(default=this_year ,
                                 validators=[MinValueValidator(2007)] )
     location = models.CharField(max_length=100, blank=True,null=True)
-    
-    
+
+
     def __str__(self):
         return self.title
 
@@ -37,8 +37,8 @@ class Experience (models.Model):
     year = models.IntegerField(default=this_year ,
                                 validators=[ MinValueValidator(2007)] )
     location = models.CharField(max_length=100, blank=True,null=True)
-    
-    
+
+
     def __str__(self):
         return self.title
 
@@ -53,10 +53,10 @@ class Project(models.Model):
     description = models.TextField(max_length=1000 , blank=True ,null=True)
     _type = models.CharField(max_length=100, blank=True,null=True , choices=types)
     cover = models.ImageField(blank=True,null=True , upload_to='Prjoects/')
-    
+
     def __str__(self):
         return self.title
-    
+
     @property
     def get_type(self):
         return self._type
@@ -69,16 +69,17 @@ class Blog(models.Model):
     ]
     title = models.CharField(max_length=100, blank=True,null=True)
     _type = models.CharField(max_length=100 , blank=True , null=True , choices = types)
+    cover = models.ImageField(blank=True,null=True , upload_to='Prjoects/')
     created_at = models.DateField(auto_now=True)
-    
-    
+
+
     def __str__(self):
         return self.title
 
     @property
     def get_type(self):
         return self._type
-    
+
     @property
     def get_date(self):
         return str(self.created_at)
@@ -88,11 +89,19 @@ class Testimonial(models.Model):
     image = models.ImageField(blank=True,null=True , upload_to='Clients/')
     body = models.TextField(max_length=1000 , blank=True ,null=True)
     job = models.CharField(max_length=100, blank=True,null=True)
-    
-    
+
+
     def __str__(self):
         return self.client
 
+class Mail(models.Model):
+    name = models.CharField(max_length=100, blank=True,null=True)
+    email = models.CharField(max_length=100, blank=True,null=True)
+    subject = models.CharField(max_length=100, blank=True,null=True)
+    body = models.TextField(max_length=1000, blank=True,null=True)
+    created_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.name
 
 
