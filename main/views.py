@@ -12,20 +12,26 @@ MY_EMAIL = "hamdi_mohamed2018@hotmail.com"
 def home(request):
     coding_skills = Skill.objects.all().filter(_type = "coding")
     other_skills = Skill.objects.all().filter(_type = "other")
-    
+
     educations = Education.objects.all().filter().order_by("-year")
     experiences = Experience.objects.all().order_by("-year")
-    
+
     projects = Project.objects.all()
-    
+
     testimonials = Testimonial.objects.all()
     blogs = Blog.objects.all()
-    
-    
-    
+
+    if request.method =="POST":
+        mail = Mail()
+        mail.name = request.POST.get("name")
+        mail.email = request.POST.get("email")
+        mail.subject = request.POST.get("subject")
+        mail.body = request.POST.get("body")
+        mail.save()
+
     context = {
         "coding_skills":coding_skills,
-        "other_skills" : other_skills , 
+        "other_skills" : other_skills ,
         "educations" : educations,
         "experiences" : experiences,
         "projects" : projects,
@@ -41,12 +47,12 @@ def filter_projects(request):
         projects = Project.objects.all()
     else:
         projects = Project.objects.all().filter(_type__icontains=_type)
-    
+
     t = render_to_string('projects.html',{"projects":projects})
     data = {
         "data":t
     }
-    
+
     return JsonResponse(data)
 
 
