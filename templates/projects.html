@@ -1,6 +1,6 @@
 {%for project in projects%}
         <div class="grid-item apps wow zoomIn">
-        <div style="height: 100% width=100%"  class="img-place" data-src="{{project.cover.url}}" data-fancybox data-caption="<h5 class='fg-theme'>Mobile Travel App</h5> <p>Travel, Discovery</p>">
+        <div style="height: 100% width=100%"  class="img-place" data-src="{{project.cover.url}}" data-fancybox data-caption="<h5 class='fg-theme'>{{project}}</h5> <p>{{project.description}}</p>">
             <img src="{{project.cover.url}}" alt="">
             <div class="img-caption">
                 <h5 class="fg-theme">{{project}}</h5>
