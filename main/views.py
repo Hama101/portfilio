@@ -68,4 +68,23 @@ def send_mail(request):
 
 
 def blog(request):
-    return render(request , "blog.html")
+    blogs = Blog.objects.all()
+    context = {
+        "blogs" : blogs,
+    }
+    return render(request , "blog.html" , context)
+
+
+def filter_blogs(request):
+    _type = request.GET.get('type')
+    if _type == "*":
+        blogs = Blog.objects.all()
+    else:
+        blogs = Blog.objects.all().filter(_type__icontains=_type)
+
+    t = render_to_string('blogs.html',{"blogs":blogs})
+    data = {
+        "data":t
+    }
+
+    return JsonResponse(data)
