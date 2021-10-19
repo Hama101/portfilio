@@ -48,6 +48,7 @@ https://www.ign.com/reviews/tv
 https://www.ign.com/reviews/movies
 https://www.ign.com/reviews/games
 '''
+
 #main runner
 def main():
     blog_scrapper()
