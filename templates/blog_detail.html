@@ -1,0 +1,44 @@
+{%extends 'base.html'%} {%load static%} {%block head %}
+<title>{{blog.title}}</title>
+<style>
+    .blogger {
+        background-image: url("https://blog.travelpayouts.com/en/wp-content/uploads/sites/2/2020/06/how-to-write.jpg");
+        background-repeat: no-repeat;
+    }
+</style>
+{% endblock %} {%block content %}
+<div class="vg-page page-home blogger" id="home">
+    <!-- Navbar -->
+    <div class="navbar navbar-expand-lg navbar-dark sticky" data-offset="500">
+        <div class="container">
+            <a href="{%url 'home'%}" class="navbar-brand">H-Folio</a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#main-navbar" aria-expanded="true">
+      <span class="ti-menu"></span>
+    </button>
+            <div class="collapse navbar-collapse" id="main-navbar">
+                <ul class="navbar-nav ml-auto">
+                </ul>
+                <ul class="nav ml-auto">
+                    <li class="nav-item">
+                        <button class="btn btn-fab btn-theme no-shadow">En</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End Navbar -->
+    <!-- Caption header -->
+    <div class="caption-header text-center wow zoomInDown">
+        <h5 class="fw-normal">Welcome</h5>
+        <h1 class="fw-light mb-4">To <b class="fg-theme">{{blog.title}}</b></h1>
+        <div class="badge">{{blog.get_type}}</div>
+    </div>
+    <!-- End Caption header -->
+    <div class="floating-button"><span class="ti-mouse"></span></div>
+</div>
+<br>
+<article class="container">
+    {{blog.body|safe}}
+</article>
+
+{% endblock %}

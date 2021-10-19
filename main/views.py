@@ -5,6 +5,9 @@ from django.core.mail import send_mail
 from .models import *
 from django.conf import settings
 # Create your views here.
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import BlogSerializer
 
 MY_EMAIL = "hamdi_mohamed2018@hotmail.com"
 
@@ -88,3 +91,29 @@ def filter_blogs(request):
     }
 
     return JsonResponse(data)
+
+
+def blog_detail(request , pk):
+    blog = Blog.objects.get(pk=pk)
+    context = {
+        "blog":blog
+    }
+    return render(request , "blog_detail.html" , context)
+
+
+
+@api_view(["POST"])
+#create a new blog using serializers
+def create_blog(request):
+    serializer = BlogSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors)
+
+@api_view(["GET"])
+#list all the blog objects using serializers
+def list_all_blog(request):
+    blogs = Blog.objects.all()
+    serializer = BlogSerializer(blogs,many=True)
+    return Response(serializer.data)

@@ -6,6 +6,8 @@
 
 {%block content %}
     
+    {%include "compents/nav-bar.html"%}
+
     <div class="vg-page page-about" id="about">
         <div class="container py-5">
             <div class="row">
@@ -243,30 +245,11 @@
     <!-- End testimonial -->
 
     <hr>
-    <!-- Blog -->
-    <div class="vg-page page-blog" id="blog">
-        <div class="container">
-            <div class="text-center">
-                <div class="badge badge-subhead wow fadeInUp">Blog</div>
-            </div>
-            <h1 class="text-center fw-normal wow fadeInUp">Latest Post</h1>
-            <div class="filterable-button py-3 wow fadeInUp" data-toggle="selected">
-                <option class="btn btn-theme-outline selected" data-filter="*" name="post_box">All</option>
-                <option class="btn btn-theme-outline" data-filter="Technology" name="post_box">Technology</option>
-                <option class="btn btn-theme-outline" data-filter="Gaming" name="post_box">Gaming</option>
-                <option class="btn btn-theme-outline" data-filter="Social life" name="post_box">Social life</option>
-            </div>
-            <div class="row post-grid" id="post-holder">
-                <br> {%include 'blogs.html' with blogs=blogs %}
-                <br>
-            </div>
-            <div class="col-12 text-center py-3 wow fadeInUp">
-                <a href="{%url 'blog'%}" class="btn btn-theme">See All Post</a>
-            </div>
-        </div>
+    
+    {%include 'compents/blog_section.html'%}
+    <div class="col-12 text-center py-3 wow fadeInUp">
+        <a href="{%url 'blog'%}" class="btn btn-theme">See All Post</a>
     </div>
-    <!-- End blog -->
-
     <!-- Contact -->
     <div class="vg-page page-contact" id="contact">
         <div class="container-fluid">

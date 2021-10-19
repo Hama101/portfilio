@@ -2,11 +2,11 @@
 <div class="col-md-6 col-lg-4 wow fadeInUp">
     <div class="card">
         <div class="img-place">
-            <img src="{{blog.cover.url}}" alt="">
+            <img src="{{blog.cover}}" alt="">
         </div>
         <div class="caption">
             <a href="javascript:void(0)" class="post-category">{{blog.get_type}}</a>
-            <a href="" class="post-title">{{blog}}</a>
+            <a href="{%url 'blog_detail' blog.id%}" class="post-title">{{blog}}</a>
             <span class="post-date"><span class="sr-only">Published on</span> {{blog.get_date}}</span>
         </div>
     </div>
